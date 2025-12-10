@@ -1,0 +1,84 @@
+<h2>
+    Deadzones
+</h2>
+<p>
+    Ahhh, finally. We arrived to the main issue in everyone's modding trip. The obscure deadzones.
+</p>
+<p>
+    Deadzones are really important for 2 big different reasons:
+</p>
+<ol>
+    <li>
+        Invisible deadzones (deadzone's not properly delimited by a color or a background image) will annoy any player trying to click a unit or a building and finding out the actions are finding no results.
+    </li>
+    <li>
+        Deadzones are required for some widgets to work:
+            <ol>
+                <li> MapView: displays the map. If it has no deadzone, clics wont work properly (you might think left one does, but because it consumes your clic, your selection disappears, making it annoying to use).</li>
+                <li> QueueButtons: in commandpanel.json. If it has no deadzone, Not only it wont work, but it might break your game when clicked.</li>
+                <li> CommandPanel widget buttons: in commandpanel.json.  They will work, but everytime you clic one of them, they deselect your current unit/building. Meaning you can multiqueue units to spawn (for example). </li>
+            </ol>
+    </li>
+</ol>
+
+<h2> Spawning Deadzones </h2>
+<p>
+    Wish you could add a widget type deadzone, put it behind another widget and make it magically work. But they can't seem to be spawnable. You can only learn the available deadzones, make them bigger or smaller, and reuse them.
+</p>
+
+<h2> Know your Deadzones </h2>
+<ol>
+    <li>
+        <p>
+            mappanel.json: The parent widget "Background" is responsable for creating the deadzone. The Deadzone ocupies the whole width and height, meaning you can make it as big or small as you like.
+        </p>
+        <img src="./assets/imgs/deadzone_mappanel.png" alt="deadzone_mappanel">
+        <br>
+    </li>
+    <li>
+        <p>
+            commandpanel.json: The widget "BackgroundLeft" is responsable for determing the height (BackgroundLeft height - 50) of the deadzone as well as its starting positioning (offset on x is BackgroundLeft offset + 50). The width of it will be determined by de collection's attribute xopen. Weird... right?
+        </p>
+        <p>
+            Maybe the example below will help. The blue area is the deadzone, the red area is de xopen, the green area is BackgroundLeft.
+        </p>
+        <img src="./assets/imgs/deadzone_commandpanel.png" alt="deadzone_mappanel">
+    </li>
+    <li>
+        <p>
+            resourcespanel.json: Talking about weird ones... This one is a rectangle created with its offset and size determined by the collection "ResourcePanel". For this case I'll paste the json object. Put it as a child of that and you will see the deadzone as a blue rectangle. 
+        </p>
+        <p>
+            If you are moving the resource bar down, the solution is to make the collection's high super high and offset in y to minus somthing. That way the deadzone is outside the screen (on the upper side).
+        </p>
+        <div class="two-columns">
+<pre><code>{
+    "Widget": {
+        "Type": "Base",
+        "Name": "Deadzone",
+        "ViewPort": {
+            "xorigin": 70,
+            "yorigin": 0,
+            "width": 1450,
+            "height": 210,
+            "alignment": "TopLeft"
+        },
+        "StateMaterials": {
+            "StateNormal": {
+                "Material": "TransparentColor",
+                "Color": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 1,
+                    "a": 0.5
+                }
+            }
+        }
+    }
+}
+</code></pre>
+            <img src="./assets/imgs/deadzone_resourcepanel.png" alt="deadzone_resourcepanel">
+        </div>
+
+    </li>
+</ol>

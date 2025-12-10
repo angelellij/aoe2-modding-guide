@@ -1,0 +1,37 @@
+<h2>
+    Collection
+</h2>
+<p>
+    Every UI json file starts with a collection (which is a collection of widgets). Collections are pretty standard. They usually only have the attributes Name, Viewport and Widgets, though sometimes they can have a longer list (see command panel below).
+</p>
+<p>
+	 In my experience, the name of the collection can't be renamed, otherwise it will not render. The name tends to be the filename but with UpperCamelCase.
+</p>
+
+<pre><code>{
+  "Collection": {
+    "Name": "CommandPanel",
+    "ViewPort": {
+      "xorigin": 1920,
+      "yorigin": 2159,
+      "width": 3520,
+      "height": 450,
+      "alignment": "BottomCentre"
+    },
+    "ActionButtonMaterialDisabled": "ButtonCmdIconDisabled",
+    "ActionButtonMaterialNormal": "ButtonCmdIconNormal",
+    "ActionButtonMaterialHover": "ButtonCmdIconHover",
+    "ActionButtonMaterialActive": "ButtonCmdIconActive",
+    "ActionButtonFont": {
+      "FontIndex": 0,
+      "PointSize": 34,
+      "Style": "Normal"
+    },
+    "xclosed": 2240,
+    "xopen": 0,
+    "xclip": 560,
+    "Widgets": [
+        ...
+    ]}
+}
+</code></pre>

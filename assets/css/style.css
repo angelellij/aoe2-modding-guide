@@ -1,0 +1,124 @@
+html{
+  --text-color: #e5e7eb;
+  --bg: #0b1020;
+  
+  --padding: 2rem;
+
+  --text-indent: 2rem;
+  --line-height: 1.5;
+  --p-break: 1rem;
+
+}
+
+body {
+  margin: 0;
+  font-family: "JetBrains Mono", monospace;
+  background: var(--bg);
+  color: var(--text-color);
+  display: grid;
+  grid-template-columns: 260px auto;
+}
+
+main {
+  height:100vh;
+  overflow-y: auto;
+  padding:var(--padding);
+  max-width: 900px;
+  margin: auto;
+}
+
+img {
+  display: block;
+  margin: auto;
+  max-width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+p, ol li {
+  line-height: var(--line-height);
+  margin-block: var(--p-break);
+}
+
+li p{
+  text-indent: 0;
+}
+
+p{
+  text-indent: var(--text-indent);
+}
+
+a{
+  color: #d4baec;
+}
+
+a:visited{
+  color: #87b8f6;
+}
+
+pre{
+  position: relative;
+  background-color: black;
+  border: 1px solid #455d97;
+  padding: calc(var(--padding)/2);
+  overflow-x: auto;
+}
+
+pre > span {
+  content: "Click to copy";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+pre > code > span {
+  color:rgb(116, 250, 116);
+}
+
+.two-columns{
+  display: grid; 
+  grid-template-columns: 1fr 1fr;
+  gap:var(--padding);
+}
+
+#sidebar {
+  padding:var(--padding);
+  background: #0f172a;
+  color: #e5e7eb;
+  height:100vh;
+  overflow-y: auto;
+}
+
+#sidebar h3 {
+  margin-top: 18px;
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+#sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+#sidebar li {
+  margin: 6px 0;
+  text-indent: Calc(var(--text-indent) / 2);
+}
+
+#sidebar a {
+  color: #cbd5f5;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+#sidebar a.active {
+  font-weight: bold;
+  color: #38bdf8;
+}

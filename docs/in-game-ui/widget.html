@@ -1,0 +1,26 @@
+<h2>
+    Widgets
+</h2>
+<p>
+    UI's are filled with widgets, so it is important to understand them. To learn how to position the widgets see the viewports guide.
+</p>
+<h2> Functionality </h2>
+<p>
+    One would think that the Functionality of a widget depends on the widget's "type" attribute, but that is not entirely true. You can create a button if you use the type "button", but it's utility is probably tied to one of the following:
+</p>
+<ol>
+    <li> The json file: It needs to be in a specific file. 
+        e.g. Copy map buttons into blanktoppanel.json. You will notice it just wont work.
+    </li>
+    <li> The hierarchy: The widget needs to have a full path of parent widgets and collections to work. 
+        <br> <small> e.g. Puting WoodStorage widget one widget above, or inside an added child will make it not display the corresponding value. </small>
+    </li>
+    <li> 
+        Deadzone: The widget will not work, will break the game, or will fully interactible if it doesn't have a deadzone behind.
+        <br> <small>e.g. Maps can be in any file in any place, but they work in a weird way without a proper deadzone. </small>
+    </li>
+    <li> It doesnt depend on the above: Honestly, I still haven't found a widget that can be used anywhere no matter what (other than displaying fixed text or images).
+        e.g. Show fixed text, fixed backgrounds.
+    </li>
+</ol>
+<h2> Page underconstruction </h2>

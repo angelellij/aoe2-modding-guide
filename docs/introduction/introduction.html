@@ -1,0 +1,25 @@
+<h1>Introduction</h1>
+<h2>Objective</h2>
+<p> This guide will cover only modifying the in-game match UI, and the replay UI (both are modified by the same files). This may be changed in the future to include more areas of modding.</p>
+<h2>Introduction</h2>
+<p>In AOE2 a mod consists of a bunch of folders and files that replicate part of the files of the game filesystem. If the mod is subscribed it will look into the mod folder to see if any of the files has the same name and file path. If it does it loads that file instead of the default one.</p>
+<p>You can find the directory by right clicking on the game on steam Manage>Browse local files. The game files are under: <b>C:\Program Files (x86)\Steam\steamapps\common\AoE2DE</b></p>
+<img src="assets/imgs/steam.png" alt="steam image">
+
+<h2>How to Mod</h2>
+<p>
+    Modding the in-game UI will be easier if you open the game and launch a skirmish with AI, putting everyone in one team and enableing the option "Lock teams".
+</p>
+<p>
+    By modifying the game files you will see live changes ingame (except for changes in texture). On the contrary, modifying mod files, even when subscribed, won't display the changes live. You would have to reload the game the changes to apply.
+</p>
+<p>
+    Since the best way of working on a mod is modifying the game files directly, it is recommended that you create a backup of the game folder you will be working on. That makes it easy to go back to the original aoe2 state.
+</p>
+<p>
+    Changing the game files while the game is open means that breaking the json format will break the game and close it. That is normal and will probably happen a lot of times in your modding journey.
+</p>
+<p> The files </p>
+<p>
+    The json files consist of nested Collection of Widgets. The collection’s base json is pretty standard and easy to understand. The only thing to add here is how alignment and scale works here.
+</p>	

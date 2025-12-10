@@ -1,0 +1,535 @@
+<h2>
+    Viewport
+</h2>
+<p>
+    Before talking about the viewport json object, we need to address the size of the main viewport, the "virtual screen" size where everything will be rendered.
+	The size of that main viewport is around 3840 x 2160 (varies a lot depending of the aspect ratio). This means that if you want a collection to occupy the top left corner you would have something like:
+</p>
+<div class="two-columns">
+    <pre><code>{
+  "Collection": {
+    "Name": "BlankBottomPanel",
+    "ViewPort": {
+        "xorigin": 0,
+        "yorigin": 0,
+        "width": 1920,
+        "height": 1080,
+        "alignment": "TopLeft"
+        },
+    "Widgets": [
+      {
+        "Widget": {
+          "Type": "Base",
+          "Name": "Background",
+          "ViewPort": {
+            "xorigin": 0,
+            "yorigin": 0,
+            "width": 1920,
+            "height": 3060,
+            "alignment": "TopLeft"
+          },
+          "StateMaterials": {
+              "StateNormal": {
+              "Material": "TransparentColor",
+              "Color": {
+                "r": 0.8,
+                "g": 0.1,
+                "b": 0.1,
+                "a":0.5
+              }
+              }
+          },
+          "ChildWidgets": []
+          }
+        }]
+    }
+}
+</code></pre>
+    <img src="./assets/imgs/leftside.png" alt="leftside">
+</div>
+
+<h2>
+    Attributes
+</h2>
+
+<p>
+    As you can see, the attributes are pretty self explanatory: xorigin and yorigin indicate the position of the collection or widget, width and height indicate the size.
+</p>
+
+<h2>
+    Alignment
+</h2>
+
+<p>
+    However, alignment might be misunderstood. It's effect varies if its a widget or a collection.
+</p>
+<ol>
+    <li>
+        If it is a <b>collection</b> it will "align" the viewport so that it scales taking into account where the collection is anchored to (Centre, Right, etc). 
+    </li>
+    <li>
+        On both a <b>collection</b> and <b>widget</b> it will select one of 9 invisible points in the parent's rectangle from which the current collection/widget will be offseted.
+    </li>
+</ol>
+
+<p>
+    The reason why the widget's alignment doesn't do the first function is easy to understand. Widgets and collections come with a locked aspect ratio set by the defined width and height, so scaling is straightfoward, therefore no necesary alignment needed.
+</p>
+<img src="./assets/imgs/alignment.png" alt="alignment">
+<p>
+    In the previous example an offset of 0 would work, because alignment would be TopLeft, but let's see how we would achieve similar results with different alignments(not the same due to alignment function in collections):
+</p>
+
+<div class="two-columns">
+<pre><code>{
+  "Collection": {
+    "Name": "BlankBottomPanel",
+    "ViewPort": {
+            "xorigin": 1920, // Child's width
+            "yorigin": 1080, // Child's width
+            "width": 1920,
+            "height": 1080,
+        "alignment": "BottomRight"
+        },
+    "Widgets": [
+      {
+        "Widget": {
+          "Type": "Base",
+          "Name": "Background",
+          "ViewPort": {
+            "xorigin": 0,
+            "yorigin": 0,
+            "width": 1920,
+            "height": 3060,
+            "alignment": "TopLeft"
+          },
+          "StateMaterials": {
+              "StateNormal": {
+              "Material": "TransparentColor",
+              "Color": {
+                "r": 0.8,
+                "g": 0.1,
+                "b": 0.1,
+                "a":0.5
+              }
+              }
+          },
+          "ChildWidgets": []
+          }
+        }]
+    }
+}
+</code></pre>
+<pre><code>{
+  "Collection": {
+    "Name": "BlankBottomPanel",
+    "ViewPort": {
+            "xorigin": 960, // Child's width/2
+            "yorigin": 540, // Child's width/2
+            "width": 1920,
+            "height": 1080,
+            "alignment":"CentreCentre"
+        },
+    "Widgets": [
+      {
+        "Widget": {
+          "Type": "Base",
+          "Name": "Background",
+          "ViewPort": {
+            "xorigin": 0,
+            "yorigin": 0,
+            "width": 1920,
+            "height": 3060,
+            "alignment": "TopLeft"
+          },
+          "StateMaterials": {
+              "StateNormal": {
+              "Material": "TransparentColor",
+              "Color": {
+                "r": 0.8,
+                "g": 0.1,
+                "b": 0.1,
+                "a":0.5
+              }
+              }
+          },
+          "ChildWidgets": []
+          }
+        }]
+    }
+}
+
+</code></pre>
+<img src="./assets/imgs/leftside2.png" alt="leftside2">
+<img src="./assets/imgs/leftside3.png" alt="leftside3">
+</div>
+
+<h2> Viewport in widgets </h2>
+<p> Lets look now the difference with widgets (no alignment due to same aspect ratio). You will notice you can achieve the same result even if you use different aspect ratios and alignments. See how can I use TopLeft for everything.</p>
+
+<p> Notice how... </p>
+<ol>
+    <li>
+        to set something on center you can  offset with Centre by Parent's Size/2, or with TopLeft Parent's Size /2 - Child's Size/2
+    </li>
+    <li>
+        to set something on right/bottom you can  offset with Right or Bottom by Parent's Size, or with TopLeft Parent's Size - Child's Size
+    </li>
+</ol>
+<div class="two-columns">
+<pre><code>{
+  "Collection": {
+    "Name": "BlankBottomPanel",
+    "ViewPort": {
+            "xorigin": 0,
+            "yorigin": 0,
+            "width": 1920,
+            "height": 1080,
+            "alignment":"TopLeft"
+        },
+    "Widgets": [
+      {
+        "Widget": {
+          "Type": "Base",
+          "Name": "Background",
+          "ViewPort": {
+            "xorigin": 0,
+            "yorigin": 0,
+            "width": 1920,
+            "height": 1080,
+            "alignment": "TopLeft"
+          },
+          "StateMaterials": {
+              "StateNormal": {
+                  "Material": "TransparentColor",
+                  "Color": {
+                      "r": 1,
+                      "g": 1,
+                      "b": 1,
+                      "a":0.2
+                  }
+              }
+          },
+          "ChildWidgets": [
+            {
+            "Widget": { 
+                "Type": "Base",
+                "Name": "Widget1", 
+                "ViewPort": {
+                    "xorigin": 0,
+                    "yorigin": 0,
+                    "width": 200,
+                    "height": 200,
+                    "alignment": "TopLeft"
+                },
+                "StateMaterials": {
+                    "StateNormal": {
+                        "Material": "TransparentColor",
+                        "Color": {
+                            "r": 1,
+                            "g": 0,
+                            "b": 0,
+                            "a":0.5
+                        }
+                    }
+                },
+                "Widgets": []
+            }
+        },
+        {
+            "Widget": { 
+                "Type": "Base",
+                "Name": "Widget2", 
+                "ViewPort": {
+                    "xorigin": 960,
+                    "yorigin": 540,
+                    "width": 200,
+                    "height": 200,
+                    "alignment": "CentreCentre"
+                },
+                "StateMaterials": {
+                    "StateNormal": {
+                        "Material": "TransparentColor",
+                        "Color": {
+                            "r": 0,
+                            "g": 1,
+                            "b": 0,
+                            "a":0.5
+                        }
+                    }
+                },
+                "Widgets": []
+            }
+        },
+        {
+            "Widget": { 
+                "Type": "Base",
+                "Name": "Widget3", 
+                "ViewPort": {
+                    "xorigin": 1920,
+                    "yorigin": 1080,
+                    "width": 200,
+                    "height": 200,
+                    "alignment": "BottomRight"
+                },
+                "StateMaterials": {
+                    "StateNormal": {
+                        "Material": "TransparentColor",
+                        "Color": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 1,
+                            "a":0.5
+                        }
+                    }
+                },
+                "Widgets": []
+            }
+        }
+          ]
+          }
+        }]
+    }
+}</code></pre>
+
+<pre><code>{
+  "Collection": {
+    "Name": "BlankBottomPanel",
+    "ViewPort": {
+            "xorigin": 0,
+            "yorigin": 0,
+            "width": 1920,
+            "height": 1080,
+            "alignment":"TopLeft"
+        },
+    "Widgets": [
+      {
+        "Widget": {
+          "Type": "Base",
+          "Name": "Background",
+          "ViewPort": {
+            "xorigin": 0,
+            "yorigin": 0,
+            "width": 1920,
+            "height": 1080,
+            "alignment": "TopLeft"
+          },
+          "StateMaterials": {
+              "StateNormal": {
+                  "Material": "TransparentColor",
+                  "Color": {
+                      "r": 1,
+                      "g": 1,
+                      "b": 1,
+                      "a":0.2
+                  }
+              }
+          },
+          "ChildWidgets": [
+            {
+            "Widget": { 
+                "Type": "Base",
+                "Name": "Widget1", 
+                "ViewPort": {
+                    "xorigin": 0,
+                    "yorigin": 0,
+                    "width": 200,
+                    "height": 200,
+                    "alignment": "TopLeft"
+                },
+                "StateMaterials": {
+                    "StateNormal": {
+                        "Material": "TransparentColor",
+                        "Color": {
+                            "r": 1,
+                            "g": 0,
+                            "b": 0,
+                            "a":0.5
+                        }
+                    }
+                },
+                "Widgets": []
+            }
+        },
+        {
+            "Widget": { 
+                "Type": "Base",
+                "Name": "Widget2", 
+                "ViewPort": {
+                    "xorigin": 860,
+                    "yorigin": 440,
+                    "width": 200,
+                    "height": 200,
+                    "alignment": "TopLeft"
+                },
+                "StateMaterials": {
+                    "StateNormal": {
+                        "Material": "TransparentColor",
+                        "Color": {
+                            "r": 0,
+                            "g": 1,
+                            "b": 0,
+                            "a":0.5
+                        }
+                    }
+                },
+                "Widgets": []
+            }
+        },
+        {
+            "Widget": { 
+                "Type": "Base",
+                "Name": "Widget3", 
+                "ViewPort": {
+                    "xorigin": 1720,
+                    "yorigin": 880,
+                    "width": 200,
+                    "height": 200,
+                    "alignment": "TopLeft"
+                },
+                "StateMaterials": {
+                    "StateNormal": {
+                        "Material": "TransparentColor",
+                        "Color": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 1,
+                            "a":0.5
+                        }
+                    }
+                },
+                "Widgets": []
+            }
+        }
+          ]
+          }
+        }]
+    }
+}</code></pre>
+
+
+<img src="./assets/imgs/widgetalignment.png" alt="widgetalignment">
+<img src="./assets/imgs/widgetalignment.png" alt="widgetalignment">
+</div>
+
+
+<h2> Invisible elements</h2>
+<p> 
+    Last thing. In order for something to be rendered it needs to be inside of the parents viewport. On the following example Widdget1 is invisible, widget2 is half visible and widget3 is fully visible.
+</p>
+
+<pre><code>{
+  "Collection": {
+    "Name": "BlankBottomPanel",
+    "ViewPort": {
+            "xorigin": 0,
+            "yorigin": 0,
+            "width": 1920,
+            "height": 1080,
+            "alignment":"TopLeft"
+        },
+        "Widgets": [
+          {
+            "Widget": {
+              "Type": "Base",
+              "Name": "Background",
+              "ViewPort": {
+                "xorigin": 0,
+                "yorigin": 0,
+                "width": 1920,
+                "height": 1080,
+                "alignment": "TopLeft"
+              },
+              "StateMaterials": {
+                  "StateNormal": {
+                      "Material": "TransparentColor",
+                      "Color": {
+                          "r": 1,
+                          "g": 1,
+                          "b": 1,
+                          "a":0.2
+                      }
+                  }
+              },
+              "ChildWidgets": [
+                {
+                "Widget": { 
+                    "Type": "Base",
+                    "Name": "Widget1", 
+                    "ViewPort": {
+                        "xorigin": 1920,
+                        "yorigin": 0,
+                        "width": 200,
+                        "height": 200,
+                        "alignment": "TopLeft"
+                    },
+                    "StateMaterials": {
+                        "StateNormal": {
+                            "Material": "TransparentColor",
+                            "Color": {
+                                "r": 1,
+                                "g": 0,
+                                "b": 0,
+                                "a":0.5
+                            }
+                        }
+                    },
+                    "Widgets": []
+                }
+            },
+            {
+                "Widget": { 
+                    "Type": "Base",
+                    "Name": "Widget2", 
+                    "ViewPort": {
+                        "xorigin": 1920,
+                        "yorigin": 200,
+                        "width": 200,
+                        "height": 200,
+                        "alignment": "TopCentre"
+                    },
+                    "StateMaterials": {
+                        "StateNormal": {
+                            "Material": "TransparentColor",
+                            "Color": {
+                                "r": 0,
+                                "g": 1,
+                                "b": 0,
+                                "a":0.5
+                            }
+                        }
+                    },
+                    "Widgets": []
+                }
+            },
+            {
+                "Widget": { 
+                    "Type": "Base",
+                    "Name": "Widget3", 
+                    "ViewPort": {
+                        "xorigin": 1920,
+                        "yorigin": 400,
+                        "width": 200,
+                        "height": 200,
+                        "alignment": "TopRight"
+                    },
+                    "StateMaterials": {
+                        "StateNormal": {
+                            "Material": "TransparentColor",
+                            "Color": {
+                                "r": 0,
+                                "g": 0,
+                                "b": 1,
+                                "a":0.5
+                            }
+                        }
+                    },
+                    "Widgets": []
+                }
+            }
+          ]
+          }
+        }]
+    }
+}</code></pre>
+<img src="./assets/imgs/invisiblewidgets.png" alt="invisiblewidgets">

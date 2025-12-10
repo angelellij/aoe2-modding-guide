@@ -1,0 +1,111 @@
+<h2>
+    State Materials
+</h2>
+<p>
+   State materials are an attribute that goes inside widgets. What they do is they indicate a style that the widget should have, and this style depends on the state. The default state is "StateNormal". I'll paste a couple of examples with a short explanation on the right.
+</p>
+<div class="two-columns">
+<pre><code>"StateMaterials": {
+    "StateNormal": {
+        "Material": "ButtonCloseNormal",
+        "Font": {
+            "FontIndex": 0,
+            "PointSize": 38,
+            "Style": "Normal",
+            "TextColor": {
+                "r": 242,
+                "g": 210,
+                "b": 182,
+                "a": 255
+            }
+            "TextOutlineWidth": 1,
+            "TextOutlineColor": {
+                "r": 0.1,
+                "g": 0.1,
+                "b": 0.1,
+                "a": 1
+            }
+        }
+    },
+    "StateHover": {
+        "Material": "FlatColor",
+        "Color": {
+            "r": 0.25,
+            "g": 0.25,
+            "b": 0.25,
+            "a": 0
+        },
+        "Font": {
+            "FontIndex": 0,
+            "PointSize": 38,
+            "Style": "Normal",
+            "TextColor": {
+                "r": 242,
+                "g": 210,
+                "b": 182,
+                "a": 255
+            }
+        }
+    }
+}
+</code></pre>
+
+<ol>
+    <li>
+        There are a lot of states possible. The one you will probably use is StateNormal.
+    </li>
+    <li>
+        Material: It can be a texture or one of the following:
+            FlatColor, TransparentColor, 
+    </li>
+    <li>
+        Color: If material is FlatColor or TransparentColor you can put rgba values to do a solid Background color.
+    </li>
+    <li>
+        Font: FontIndex: Can be 0, 2 or 3.
+    </li>
+    <li>
+        Font: PointSize: Size of the Text.
+    </li>
+        Font: Style: I have not found other options other than "Normal".
+    <li>
+        Font: TextColor: You need to provide the rgba values like in previous examples.
+    </li>
+    <li>
+        Font: TextOutlineWidth:  If you want an outline.
+    </li>
+    <li>
+        Font: TextOutlineColor:  Change the text outline color using rgba.   
+    </li>
+</ol>
+</div>
+
+<h2> State Material as debug </h2>
+<div class="two-columns">
+    <div>
+        <p>
+            Sometimes you lose track of where widgets are positioned or how bit they are. In that case, setting a TransparentColor with some values can help you understand your UI.
+        </p>
+        <p>
+            Use this code in your widget if you ever get lost (it should paint it red).
+        </p>
+    </div>
+
+<pre><code>"StateMaterials": {
+    "StateNormal": {
+        "Material": "TransparentColor",
+        "Color": {
+            "r": 1,
+            "g": 0,
+            "b": 0,
+            "a": 0.5
+        }
+    }
+}
+</code></pre>
+</div>
+
+<h2> Disclaimer </h2>
+<p>
+    I am not going to pretend to know much about StateMaterials. So take this with a grain of salt, and, if you know more, feel free to contribute to this guide.
+</p>

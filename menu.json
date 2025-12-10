@@ -1,0 +1,29 @@
+{
+  "sections": [
+    {
+      "title": "Getting Started",
+      "items": [
+        { "label": "Introduction", "page": "introduction/introduction" },
+        { "label": "Resources", "page": "introduction/other-resources" }
+      ]
+    },
+    {
+      "title": "In-game UI",
+      "items": [
+        { "label": "Files to mod", "page": "in-game-ui/files" },
+        { "label": "Collections", "page": "in-game-ui/collection" },
+        { "label": "Viewports", "page": "in-game-ui/viewport" },
+        { "label": "State Materials", "page": "in-game-ui/state-materials" },
+        { "label": "Widgets", "page": "in-game-ui/widget" },
+        { "label": "Deadzones", "page": "in-game-ui/deadzones" }
+      ]
+    },
+    {
+      "title": "Other",
+      "items": [
+        { "label": "Note to devs", "page": "other/note-to-devs" },
+        { "label": "Credits", "page": "other/credits" }
+      ]
+    }
+  ]
+}
