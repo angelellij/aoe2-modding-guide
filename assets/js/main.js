@@ -21,7 +21,7 @@ fetch(sel_page)
 
 async function loadSidebar() {
 try {
-  const res = await fetch("./menu.json");
+  const res = await fetch("menu.json");
   const data = await res.json();
 
   const sidebar = document.getElementById("sidebar-container");
