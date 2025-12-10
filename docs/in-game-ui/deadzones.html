@@ -9,13 +9,13 @@
 </p>
 <ol>
     <li>
-        Invisible deadzones (deadzone's not properly delimited by a color or a background image) will annoy any player trying to click a unit or a building and finding out the actions are finding no results.
+        Invisible deadzones (deadzone's not properly delimited by a color or a background image) will annoy any player trying to click a unit or a building and finding out the actions have no results.
     </li>
     <li>
         Deadzones are required for some widgets to work:
             <ol>
                 <li> MapView: displays the map. If it has no deadzone, clics wont work properly (you might think left one does, but because it consumes your clic, your selection disappears, making it annoying to use).</li>
-                <li> QueueButtons: in commandpanel.json. If it has no deadzone, Not only it wont work, but it might break your game when clicked.</li>
+                <li> QueueButtons: in commandpanel.json. If it has no deadzone, not only it won't work, but it might break your game when clicked.</li>
                 <li> CommandPanel widget buttons: in commandpanel.json.  They will work, but everytime you clic one of them, they deselect your current unit/building. Meaning you can multiqueue units to spawn (for example). </li>
             </ol>
     </li>
@@ -37,10 +37,10 @@
     </li>
     <li>
         <p>
-            commandpanel.json: The widget "BackgroundLeft" is responsable for determing the height (BackgroundLeft height - 50) of the deadzone as well as its starting positioning (offset on x is BackgroundLeft offset + 50). The width of it will be determined by de collection's attribute xopen. Weird... right?
+            commandpanel.json: The widget "BackgroundLeft" is responsable for determing the height (BackgroundLeft height - 50) of the deadzone as well as its starting positioning (offset on x is BackgroundLeft offset + 50). The width of it will be determined by the collection's attribute xopen. Weird... right?
         </p>
         <p>
-            Maybe the example below will help. The blue area is the deadzone, the red area is de xopen, the green area is BackgroundLeft.
+            Maybe the example below will help. The blue area is the deadzone, the red area is the xopen, the green area is BackgroundLeft.
         </p>
         <img src="./assets/imgs/deadzone_commandpanel.png" alt="deadzone_mappanel">
     </li>
