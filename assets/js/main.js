@@ -85,6 +85,37 @@ function linkify(url, regex) {
   });
 }
 
+function for_all_civs() {
+  const regex = /^.*\{\{civ\}\}.*$/m;
+  civs = ["AFTI", "ASIA","MEDI", "MESO", "NOMAD", "ORIE", "SEAS", "SLAV", "WEST"];
+
+  if (regex.test(page)) return;
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    null,
+    false
+  );
+
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach(textNode => {
+    if (!textNode.parentElement) return;
+    if (textNode.parentElement.tagName === "A") return; // don't double-wrap
+
+    if (!regex.test(textNode.nodeValue)) return;
+
+    const span = document.createElement("span");
+    civs.forEach(civ =>{
+      let value = textNode.nodeValue;
+      span.innerHTML += value.replace("{{civ}}", civ);
+    });
+
+    textNode.replaceWith(...span.childNodes);
+  });
+}
+
 function main(){
   // Copy Code
   
@@ -148,4 +179,6 @@ linkify(
   "index.html?page=in-game-ui/state-materials",
   /\bdeadzones?\b/i
 );
+
+for_all_civs();
 }

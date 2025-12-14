@@ -42,7 +42,8 @@ p, ol li {
   margin-block: var(--p-break);
 }
 
-li p{
+li p,
+p.no-indent{
   text-indent: 0;
 }
 

@@ -8,13 +8,19 @@
       ]
     },
     {
+      "title": "All arround modding",
+      "items": [
+        { "label": "Collections", "page": "modding/collection" },
+        { "label": "Viewports", "page": "modding/viewport" },
+        { "label": "Widgets", "page": "modding/widget" },
+        { "label": "State Materials", "page": "modding/state-materials" }
+      ]
+    },
+    {
       "title": "In-game UI",
       "items": [
-        { "label": "Files to mod", "page": "in-game-ui/files" },
-        { "label": "Collections", "page": "in-game-ui/collection" },
-        { "label": "Viewports", "page": "in-game-ui/viewport" },
-        { "label": "State Materials", "page": "in-game-ui/state-materials" },
-        { "label": "Widgets", "page": "in-game-ui/widget" },
+        { "label": "Json Files", "page": "in-game-ui/json-files" },
+        { "label": "Textures", "page": "in-game-ui/textures" },
         { "label": "Deadzones", "page": "in-game-ui/deadzones" }
       ]
     },
